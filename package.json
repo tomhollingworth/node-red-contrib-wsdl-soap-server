@@ -1,0 +1,10 @@
+{
+    "name" : "node-red-contrib-wsdl-soap-server",
+
+    "node-red" : {
+        "nodes": {
+            "soap-server": "soap-server.js",
+            "soap-response": "soap-response.js"
+        }
+    }
+}
