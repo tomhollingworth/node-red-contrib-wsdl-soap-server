@@ -27,19 +27,18 @@ module.exports = function (RED) {
 
         for (var i = 0; i < portFunctions.length; i++) {
             const functionName = portFunctions[i];
-            parsedService[serviceName][portName][functionName] = function(args, callback, headers, req) {
+            parsedService[serviceName][portName][functionName] = function(args, callback, headers, req, res, server) {
                 node.send({
                     payload: {
                         params: args,
                         headers: headers,
                         req: req,
-                        fun: functionName
+                        fun: functionName,
                     },
                     _soap_server_soapResponseCallback: callback,
+                    _soap_server_reference: server,
+                    res: res
                 });
-                return {
-                    name: args.name
-                };
             };
         }
 

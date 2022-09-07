@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    RED.nodes.registerType('soap-response', {
+        category: 'function',
+        color: '#2596be',
+        defaults: {
+            name: {
+                value: "",
+                required: false
+            },
+            convert:{
+                value: false
+            }
+        },
+        icon: "white-globe.png",
+        inputs: 1,
+        outputs: 0,
+        label: function () {
+            return this.name || "soap-response";
+        }
+    });   
+</script>
+
+<script type="text/html" data-template-name="soap-response">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-convert"><i class="fa fa-tag"></i> Convert JSON to XML</label>
+        <input type="checkbox" id="node-input-convert" placeholder="Convert JSON to XML">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="soap-response">
+    <p>Returns a SOAP response on request.</p>
+</script>
+
