@@ -1,0 +1,50 @@
+<script type="text/javascript">
+    RED.nodes.registerType('soap-server', {
+        category: 'function',
+        color: '#2596be',
+        defaults: {
+            name: {
+                value: "",
+                required: false
+            },
+            ip: {
+                value: "",
+                required: true
+            },
+            port: {
+                value: "",
+                required: true
+            },
+            wsdl: {
+                value: "",
+                required: true
+            },
+        },
+        inputs: 0,
+        outputs: 1,
+        icon: "white-globe.png",
+        label: function () {
+            return this.name || "soap-server";
+        }
+    });   
+</script>
+
+<script type="text/html" data-template-name="soap-server">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="fa fa-tag"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port">
+    </div>
+    <div class="form-row">
+        <label for="node-input-wsdl"><i class="fa fa-tag"></i> WSDL</label>
+        <textarea  id="node-input-wsdl" rows="10" placeholder="WSDL"> </textarea>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="soap-server">
+    <p>A node which starts a soap server configured by a WSDL specification.</p>
+</script>
+

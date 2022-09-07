@@ -1,10 +1,28 @@
 {
-    "name" : "node-red-contrib-wsdl-soap-server",
-
-    "node-red" : {
-        "nodes": {
-            "soap-server": "soap-server.js",
-            "soap-response": "soap-response.js"
-        }
+  "name": "red-contrib-wsdl-soap-server",
+  "node-red": {
+    "nodes": {
+      "soap-server": "soap-server.js"
     }
+  },
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server/issues"
+  },
+  "homepage": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server#readme",
+  "dependencies": {
+    "soap": "^0.45.0",
+    "wsdl-make": "^1.0.0",
+    "xml-js": "^1.6.11"
+  }
 }
