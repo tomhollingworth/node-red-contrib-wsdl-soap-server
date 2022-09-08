@@ -3,15 +3,17 @@ module.exports = function (RED) {
     const http = require("http");
     const soap = require("soap");
     const convert = require("xml-js");
+    const url = require("url");
 
     function parseService(service, bindings, node) {
         const serviceName = service["_attributes"]["name"];
+        const serviceUrl =  service["wsdl:port"]["wsdlsoap:address"]["_attributes"]["location"];
         const portName = service["wsdl:port"]["_attributes"]["name"];
-        const bindingName = service["wsdl:port"]["_attributes"]["binding"];
+        const bindingName = service["wsdl:port"]["_attributes"]["binding"].replace("tns:", "");
         var portFunctions = []
         if (Array.isArray(bindings)) {
             for (var i = 0; i < bindings.length; i++) {
-                if (bindings[i]["_attributes"]["name"] == bindingName) {
+                if (bindings[i]["_attributes"]["name"].replace("tns:","") == bindingName) {
                     portFunctions = parseBinding(bindings[i])
                 }
             }
@@ -21,6 +23,7 @@ module.exports = function (RED) {
 
         var parsedService = {
             [serviceName]: {
+                "serviceUrl": serviceUrl,
                 [portName]: {}
             }
         };
@@ -90,6 +93,8 @@ module.exports = function (RED) {
             }
         }
 
+        console.log(JSON.stringify(services));
+
         try {
 
             const server = http.createServer(function (request, response) {
@@ -98,13 +103,16 @@ module.exports = function (RED) {
 
             server.listen(port);
 
-            soap.listen(server, "/wsdl", services, wsdl, function () {
+            for(const [key, value] of Object.entries(services)){
+                var path = url.parse(value["serviceUrl"]).pathname.replace(/\/$/, '');
+            soap.listen(server, path, services, wsdl, function () {
                 node.status({
                     fill: "green",
                     shape: "dot",
                     text: "Server running..."
                 });
             });
+            }
 
             node.on("close", function (callback) {
                 node.status({
