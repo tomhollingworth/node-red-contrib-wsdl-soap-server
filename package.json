@@ -1,5 +1,5 @@
 {
-  "name": "red-contrib-wsdl-soap-server",
+  "name": "node-red-contrib-wsdl-soap-server",
   "node-red": {
     "nodes": {
       "soap-server": "soap-server.js",
@@ -15,13 +15,21 @@
     "type": "git",
     "url": "git+https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server.git"
   },
-  "author": "",
+  "keywords": [
+    "node-red",
+    "soap",
+    "wsdl",
+    "soap-server",
+    "node-red-contrib-wsdl-soap-server"
+  ],
+  "author": "Kristijan Zrno",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server/issues"
   },
   "homepage": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server#readme",
   "dependencies": {
+    "npm-pack-all": "^1.12.7",
     "soap": "^0.45.0",
     "wsdl-make": "^1.0.0",
     "xml-js": "^1.6.11"
