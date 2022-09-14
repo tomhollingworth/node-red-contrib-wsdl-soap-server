@@ -29,7 +29,6 @@
   },
   "homepage": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server#readme",
   "dependencies": {
-    "npm-pack-all": "^1.12.7",
     "soap": "^0.45.0",
     "wsdl-make": "^1.0.0",
     "xml-js": "^1.6.11"
