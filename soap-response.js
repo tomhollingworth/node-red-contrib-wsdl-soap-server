@@ -8,8 +8,8 @@ module.exports = function (RED) {
             const server = msg["_soap_server_reference"];
             const res = msg["res"];
             if (!config.convert) {
-                var result = server._envelope(msg.payload, this.headers, this.includeTimestamp);
-                server._sendHttpResponse(res, 200, result);
+                //var result = server._envelope(msg.payload, this.headers, this.includeTimestamp);
+                server._sendHttpResponse(res, 200, msg.payload);
             } else {
                 if (callback == null) {
                     return;
