@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server.git"
+    "url": "git+https://github.com/tomhollingworth/node-red-contrib-wsdl-soap-server.git"
   },
   "keywords": [
     "node-red",
@@ -25,9 +25,9 @@
   "author": "Kristijan Zrno",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server/issues"
+    "url": "https://github.com/tomhollingworth/node-red-contrib-wsdl-soap-server/issues"
   },
-  "homepage": "https://github.com/kristijanzrno/node-red-contrib-wsdl-soap-server#readme",
+  "homepage": "https://github.com/tomhollingworth/node-red-contrib-wsdl-soap-server#readme",
   "dependencies": {
     "soap": "^0.45.0",
     "wsdl-make": "^1.0.0",
