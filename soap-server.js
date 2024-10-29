@@ -7,9 +7,9 @@ module.exports = function (RED) {
 
     function parseService(service, bindings, node) {
         const serviceName = service["_attributes"]["name"];
-        const serviceUrl =  service["wsdl:port"]["wsdlsoap:address"]["_attributes"]["location"];
-        const portName = service["wsdl:port"]["_attributes"]["name"];
-        const bindingName = service["wsdl:port"]["_attributes"]["binding"].replace("tns:", "");
+        const serviceUrl =  service["port"]["soap:address"]["_attributes"]["location"];
+        const portName = service["port"]["_attributes"]["name"];
+        const bindingName = service["port"]["_attributes"]["binding"].replace("tns:", "");
         var portFunctions = []
         if (Array.isArray(bindings)) {
             for (var i = 0; i < bindings.length; i++) {
@@ -50,12 +50,12 @@ module.exports = function (RED) {
 
     function parseBinding(binding) {
         var portFunctions = []
-        if (Array.isArray(binding["wsdl:operation"])) {
-            for (var i = 0; i < binding["wsdl:operation"].length; i++) {
-                portFunctions.push(binding["wsdl:operation"][i]["_attributes"]["name"])
+        if (Array.isArray(binding["operation"])) {
+            for (var i = 0; i < binding["operation"].length; i++) {
+                portFunctions.push(binding["operation"][i]["_attributes"]["name"])
             }
         } else {
-            portFunctions.push(binding["wsdl:operation"]["_attributes"]["name"])
+            portFunctions.push(binding["operation"]["_attributes"]["name"])
         }
         return portFunctions;
     }
@@ -75,19 +75,19 @@ module.exports = function (RED) {
             spaces: 4
         }));
 
-        parsedXml = parsedXml["wsdl:definitions"];
+        parsedXml = parsedXml["definitions"];
         var services = {}
 
-        if (Array.isArray(parsedXml["wsdl:service"])) {
-            for (var i = 0; i < parsedXml["wsdl:service"].length; i++) {
-                var service = parseService(parsedXml["wsdl:service"][i], parsedXml["wsdl:binding"], node);
+        if (Array.isArray(parsedXml["service"])) {
+            for (var i = 0; i < parsedXml["service"].length; i++) {
+                var service = parseService(parsedXml["service"][i], parsedXml["binding"], node);
                 for(const [key, value] of Object.entries(service)){
                     services[key] = value;
                 }
             }
 
         } else {
-            var service = parseService(parsedXml["wsdl:service"], parsedXml["wsdl:binding"], node);
+            var service = parseService(parsedXml["service"], parsedXml["binding"], node);
             for(const [key, value] of Object.entries(service)){
                 services[key] = value;
             }
